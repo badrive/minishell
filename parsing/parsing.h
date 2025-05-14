@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: bfaras <bfaras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 18:29:34 by w                 #+#    #+#             */
-/*   Updated: 2025/05/11 15:20:14 by w                ###   ########.fr       */
+/*   Updated: 2025/05/14 18:52:25 by bfaras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ typedef struct s_data
     struct  s_data *cmd;
 }   t_data;
 
+
+char **ft_split_cmd(const char *s, char c);
 
 #endif
