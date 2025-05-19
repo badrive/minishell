@@ -6,7 +6,7 @@
 /*   By: bfaras <bfaras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 18:29:34 by w                 #+#    #+#             */
-/*   Updated: 2025/05/14 18:52:25 by bfaras           ###   ########.fr       */
+/*   Updated: 2025/05/19 16:55:27 by bfaras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,23 @@ typedef struct s_heredoc
     t_heredoc *next;
 } t_heredoc;
 
+typedef struct s_cmd
+{
+    char *value;
+    struct s_cmd *next;
+}   t_cmd_lst;
+
 typedef struct s_data
 {
-    char    **cmds;//ls -la
+    char    **cmds;//ls, -la, zft ,|, wc ,-l,NULL
+    t_cmd_lst *cmd_lst;
     t_redir *redir;
     t_heredoc *herdoc;
-    struct  s_data *cmd;
+    struct  s_data *next;//create new node
 }   t_data;
 
 
 char **ft_split_cmd(const char *s, char c);
 
 #endif
+ 

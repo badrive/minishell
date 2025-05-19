@@ -6,13 +6,14 @@
 /*   By: bfaras <bfaras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:51:32 by w                 #+#    #+#             */
-/*   Updated: 2025/05/14 18:52:10 by bfaras           ###   ########.fr       */
+/*   Updated: 2025/05/19 16:55:59 by bfaras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int count_word(const char *s, char c) {
+int count_word(const char *s, char c) 
+{
     int i = 0;
     int count = 0;
     int in_word = 0;
@@ -108,7 +109,8 @@ char **ft_callocc(char **ptr, const char *s, char c) {
     return (ptr);
 }
 
-char **ft_split_cmd(const char *s, char c) {
+char **ft_split_cmd(const char *s, char c) 
+{
     char **ptr;
     size_t count;
 
