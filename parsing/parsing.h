@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdbool.h>
 
 // Forward declarations
 typedef struct s_lexer t_lexer;
@@ -70,7 +71,7 @@ typedef struct s_data
 }   t_data;
 
 
-char **ft_split_cmd(const char *s, char c);
+char **ft_split_cmd(const char *s);
 
 #endif
  

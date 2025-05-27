@@ -12,7 +12,12 @@
 
 #include "parsing.h"
 
-int count_word(const char *s, char c) 
+bool     is_ws(char c)
+{
+    return (ft_strchr("\t\n ", c));
+}
+
+int count_word(const char *s) 
 {
     int i = 0;
     int count = 0;
@@ -37,7 +42,7 @@ int count_word(const char *s, char c)
             quote = 0;
         }
         // Handle spaces only if not in quotes
-        else if (s[i] == c && !quote) {
+        else if (is_ws(s[i]) && !quote) {
             in_word = 0;
         }
         // Found start of a new word outside quotes
@@ -50,7 +55,7 @@ int count_word(const char *s, char c)
     return (count);
 }
 
-int ft_len(const char *s, char c) {
+int ft_len(const char *s) {
     int i = 0;
     char quote = 0; // To track quotes
     
@@ -66,7 +71,7 @@ int ft_len(const char *s, char c) {
             quote = 0; // End of quoted string
         }
         // Stop at delimiter only if not in quotes
-        else if (s[i] == c && !quote) {
+        else if (is_ws(s[i]) && !quote) {
             break;
         }
         i++;
@@ -80,7 +85,7 @@ void free_split(char **ptr, size_t index) {
     free(ptr);
 }
 
-char **ft_callocc(char **ptr, const char *s, char c) {
+char **ft_callocc(char **ptr, const char *s) {
     size_t j = 0;
     size_t i = 0;
     size_t len_word;
@@ -88,12 +93,12 @@ char **ft_callocc(char **ptr, const char *s, char c) {
     
     while (s[i]) {
         // Skip delimiter if not in quotes
-        if (s[i] == c && !quote) {
+        if (is_ws(s[i]) && !quote) {
             i++;
             continue;
         }
 
-        len_word = ft_len(&s[i], c);
+        len_word = ft_len(&s[i]);
         ptr[j] = ft_substr(s, i, len_word);
 
         if (!ptr[j]) {
@@ -109,7 +114,7 @@ char **ft_callocc(char **ptr, const char *s, char c) {
     return (ptr);
 }
 
-char **ft_split_cmd(const char *s, char c) 
+char **ft_split_cmd(const char *s) 
 {
     char **ptr;
     size_t count;
@@ -117,8 +122,7 @@ char **ft_split_cmd(const char *s, char c)
     if (!s)
         return (NULL);
 
-    count = count_word(s, c);
-    printf("-> count: %ld\n", count);
+    count = count_word(s);
 
     ptr = (char **)malloc(sizeof(char *) * (count + 1));
     if (!ptr)
@@ -129,7 +133,7 @@ char **ft_split_cmd(const char *s, char c)
         return (ptr);
     }
     
-    if (!ft_callocc(ptr, s, c)) {
+    if (!ft_callocc(ptr, s)) {
         free(ptr);
         return (NULL);
     }
