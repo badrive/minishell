@@ -12,62 +12,57 @@
 
 #include "parsing/parsing.h"
 
-// WORD PIPE WORD --: WORD 
-// ls -l -a -t > file >> fileappend <filein << limeter 
-/*
-arg[0] = ls
-arg[1] = -l
-arg[2] = -a
-arg[3] = -t
-arg[4] = >
-arg[5] = file
-arg[6] = >>
-arg[7] = fileappend
-arg[9] = <
-arg[8] = filein
-arg[10] = | --> next cmd
-ls-> type = word, 
-*/
-
-//
-
-int main (int ac, char **av)
+int main(int ac, char **av)
 {
-    t_data *data;
     (void)ac;
     (void)av;
-
-    int     i;
-    // int     j = 0;
-    data = malloc(sizeof(t_data));
-	if (!data)
-		return (1);
-
-	char	*str = NULL;
+    
+    char *str = NULL;
+    t_data *data = NULL;
 
     while (1)
     {
-		i = 0;
         str = readline("minishell~$ ");
-		if (!str)
-			break;
+        if (!str)
+            break;
 
-			// data->cmds = ft_split_cmd(str, ' ');
-		char **cmd = ft_split(str, '|');
-		
-		while(cmd[i])
-		{
-			data->cmds = ft_split_cmd(cmd[i]);
-			//data->cmds[0] is builtin or not
-			int j = 0;
-			while(data->cmds[j])
+        char **cmd = ft_split(str, '|');
+        if (!cmd)
+            continue;
+		// full struct
+        int i = 0;
+		int j = 0;
+        while (cmd[i])
+        {
+            char **args = ft_split_cmd(cmd[i]);
+            if (args)
+                ft_lstadd_back2(&data, new_node(args));  // ✅ Use dynamic node
+            i++;
+        }
+
+        // ✅ Print full command list
+        t_data *temp = data;
+		int k = 0;
+        while (temp)
+        {
+                printf("comand line number :[%d] \n", k);
+			if(temp->cmds)
 			{
-
-				printf("cmd[%d] > {%s}\n", j, data->cmds[j]);
-				j++;
+			j = 0;
+            while (temp->cmds[j])
+            {
+                printf("------arg[%d]: %s\n", j, temp->cmds[j]);
+                j++;
+            }
 			}
-			i++;
-		}
-		add_history(str);
+            temp = temp->next;
+			k++;
+        }
+		// free
+		free_list(data);
+		data = NULL;
+        add_history(str);
+        free(str);
     }
+    return 0;
 }

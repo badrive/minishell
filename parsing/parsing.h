@@ -72,6 +72,10 @@ typedef struct s_data
 
 
 char **ft_split_cmd(const char *s);
+t_data *new_node(char **args);
+void ft_lstadd_back2(t_data **lst, t_data *new);
+void free_list(t_data *begin);
+
 
 #endif
  
