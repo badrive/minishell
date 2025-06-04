@@ -6,7 +6,7 @@
 /*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 12:13:54 by w                 #+#    #+#             */
-/*   Updated: 2025/06/04 12:14:11 by w                ###   ########.fr       */
+/*   Updated: 2025/06/04 19:14:48 by w                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data *new_node(char **args)
 	if(!node)
 		return NULL;
 	node->cmds = args;
-	node->cmd_lst = malloc(sizeof(t_cmd_lst));
+	// node->cmd_lst = malloc(sizeof(t_cmd_lst));
 	node->redir = NULL;
 	node->herdoc = NULL;
 	node->next = NULL;

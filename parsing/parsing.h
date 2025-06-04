@@ -6,7 +6,7 @@
 /*   By: w <w@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 18:29:34 by w                 #+#    #+#             */
-/*   Updated: 2025/06/04 12:30:57 by w                ###   ########.fr       */
+/*   Updated: 2025/06/04 19:14:04 by w                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ typedef enum s_type
     DELIMITER,
     NOTDEF
 } t_type;
-
+// echo bhdbf jdfbjdf $home jchdc
+//i  = 10  i + 1 11 home 14 getenv(home) /home/user 4adi tremplaci pos 10 tal 14 b 
+// echo bhdbf jdfbjdf /home/user jchdc
 typedef struct s_lexer
 {
     t_type type;
@@ -58,16 +60,16 @@ typedef struct s_heredoc
     t_heredoc *next;
 } t_heredoc;
 
-typedef struct s_cmd
-{
-    char *value;
-    struct s_cmd *next;
-}   t_cmd_lst;
+// typedef struct s_cmd
+// {
+//     char *value;
+//     struct s_cmd *next;
+// }   t_cmd_lst;
 
 typedef struct s_data
 {
     char    **cmds;//ls, -la, zft ,|, wc ,-l,NULL
-    t_cmd_lst *cmd_lst;
+    // t_cmd_lst *cmd_lst;
     t_redir *redir;
     t_heredoc *herdoc;
     struct  s_data *next;//create new node
